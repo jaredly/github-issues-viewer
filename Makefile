@@ -8,4 +8,7 @@ components: component.json
 clean:
 	rm -fr build components template.js
 
+view:
+	@xdg-open web/index.html
+
 .PHONY: clean

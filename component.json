@@ -5,13 +5,19 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "components/backbone": "*"
+    "components/backbone": "*",
+    "component/jquery": "*",
+    "lodash/lodash": "*"
   },
   "development": {},
   "license": "MIT",
   "main": "index.js",
   "scripts": [
-    "index.js"
+    "index.js",
+    "lib/app.js",
+    "lib/router.js",
+    "lib/pages/issue.js",
+    "lib/pages/all-issues.js"
   ],
   "styles": [
     "twitter-audition.css"

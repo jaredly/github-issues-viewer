@@ -1,0 +1,17 @@
+{
+  "strict": false,
+  "laxcomma": true,
+  "undef": true,
+  "node": true,
+  "globals": {
+    "React": false
+  },
+  "-W033": false,
+  "-W024": false,
+  "-W030": false,
+  "-W069": false,
+  "-W089": false,
+  "-W098": false,
+  "-W116": false,
+  "-W065": false
+}
