@@ -194,3 +194,76 @@ a:hover {
   top: -10px;
 }
 
+/* main app */
+
+.repo-input {
+  input {
+    border: 1px solid white;
+    border-radius: 3px;
+    vertical-align: middle;
+    font-size: 18px;
+    padding: 2px 5px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 3px #777;
+      cursor: text;
+    }
+
+  }
+
+  button {
+    .btn;
+    .btn-default;
+  }
+}
+
+.repo-input__title {
+  color: #777;
+  font-size: 18px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* all issues page */
+
+/** pager **/
+
+.pager {
+}
+
+.pager__button {
+  .btn;
+  .btn-default;
+  .btn-sm;
+  font-family: FontAwesome;
+}
+.pager__button--prev::before {
+  content: @fa-var-angle-left;
+}
+.pager__button--next::before {
+  content: @fa-var-angle-right;
+}
+
+.pager__page {
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #999;
+  vertical-align: middle;
+
+  &:hover {
+    color: black;
+  }
+}
+
+.pager__page.disabled {
+  color: black;
+  font-weight: bold;
+}
+
+/** issue **/
+

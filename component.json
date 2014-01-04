@@ -17,6 +17,7 @@
   "scripts": [
     "index.js",
     "lib/app.js",
+    "lib/view.js",
     "lib/router.js",
     "lib/utils.js",
     "lib/pages/issue.js",
@@ -27,6 +28,7 @@
     "lib/components/comments.js",
     "lib/components/labels.js",
     "lib/components/label.js",
+    "lib/components/repo-input.js",
     "lib/components/recent-time.js"
   ],
   "styles": [

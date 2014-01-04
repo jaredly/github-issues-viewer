@@ -2150,3 +2150,225 @@ a:hover {
   position: relative;
   top: -10px;
 }
+/* main app */
+.repo-input input {
+  border: 1px solid white;
+  border-radius: 3px;
+  vertical-align: middle;
+  font-size: 18px;
+  padding: 2px 5px;
+  font-weight: bold;
+  margin-right: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.repo-input input:focus {
+  outline: none;
+  box-shadow: 0 0 3px #777;
+  cursor: text;
+}
+.repo-input button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.repo-input button:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.repo-input button:hover,
+.repo-input button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.repo-input button:active,
+.repo-input button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.repo-input button.disabled,
+.repo-input button[disabled],
+fieldset[disabled] .repo-input button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.repo-input button:hover,
+.repo-input button:focus,
+.repo-input button:active,
+.repo-input button.active,
+.open .dropdown-toggle.repo-input button {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+.repo-input button:active,
+.repo-input button.active,
+.open .dropdown-toggle.repo-input button {
+  background-image: none;
+}
+.repo-input button.disabled,
+.repo-input button[disabled],
+fieldset[disabled] .repo-input button,
+.repo-input button.disabled:hover,
+.repo-input button[disabled]:hover,
+fieldset[disabled] .repo-input button:hover,
+.repo-input button.disabled:focus,
+.repo-input button[disabled]:focus,
+fieldset[disabled] .repo-input button:focus,
+.repo-input button.disabled:active,
+.repo-input button[disabled]:active,
+fieldset[disabled] .repo-input button:active,
+.repo-input button.disabled.active,
+.repo-input button[disabled].active,
+fieldset[disabled] .repo-input button.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.repo-input button .badge {
+  color: #ffffff;
+  background-color: #fff;
+}
+.repo-input__title {
+  color: #777;
+  font-size: 18px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+/* all issues page */
+/** pager **/
+.pager__button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  font-family: FontAwesome;
+}
+.pager__button:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.pager__button:hover,
+.pager__button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.pager__button:active,
+.pager__button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.pager__button.disabled,
+.pager__button[disabled],
+fieldset[disabled] .pager__button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.pager__button:hover,
+.pager__button:focus,
+.pager__button:active,
+.pager__button.active,
+.open .dropdown-toggle.pager__button {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+.pager__button:active,
+.pager__button.active,
+.open .dropdown-toggle.pager__button {
+  background-image: none;
+}
+.pager__button.disabled,
+.pager__button[disabled],
+fieldset[disabled] .pager__button,
+.pager__button.disabled:hover,
+.pager__button[disabled]:hover,
+fieldset[disabled] .pager__button:hover,
+.pager__button.disabled:focus,
+.pager__button[disabled]:focus,
+fieldset[disabled] .pager__button:focus,
+.pager__button.disabled:active,
+.pager__button[disabled]:active,
+fieldset[disabled] .pager__button:active,
+.pager__button.disabled.active,
+.pager__button[disabled].active,
+fieldset[disabled] .pager__button.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.pager__button .badge {
+  color: #ffffff;
+  background-color: #fff;
+}
+.pager__button--prev::before {
+  content: "\f104";
+}
+.pager__button--next::before {
+  content: "\f105";
+}
+.pager__page {
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #999;
+  vertical-align: middle;
+}
+.pager__page:hover {
+  color: black;
+}
+.pager__page.disabled {
+  color: black;
+  font-weight: bold;
+}
+/** issue **/
