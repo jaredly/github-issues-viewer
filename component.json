@@ -17,7 +17,9 @@
     "lib/app.js",
     "lib/router.js",
     "lib/pages/issue.js",
-    "lib/pages/all-issues.js"
+    "lib/pages/all-issues.js",
+    "lib/components/issue.js",
+    "lib/components/pager.js"
   ],
   "styles": [
     "twitter-audition.css"
