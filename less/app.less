@@ -241,6 +241,11 @@ a:hover {
   button {
     .btn;
     .btn-default;
+
+    &[disabled],
+    &.disabled {
+      background-color: #ebebeb;
+    }
   }
 }
 
@@ -266,6 +271,10 @@ a:hover {
   .btn-default;
   .btn-sm;
   font-family: FontAwesome;
+
+  &.disabled {
+    background-color: #ebebeb;
+  }
 }
 .mypager__button--start::before {
   content: @fa-var-angle-double-left;

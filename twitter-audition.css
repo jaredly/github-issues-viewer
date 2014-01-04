@@ -2272,6 +2272,10 @@ fieldset[disabled] .repo-input button.active {
   color: #ffffff;
   background-color: #fff;
 }
+.repo-input button[disabled],
+.repo-input button.disabled {
+  background-color: #ebebeb;
+}
 .repo-input__title {
   color: #777;
   font-size: 18px;
@@ -2407,6 +2411,10 @@ fieldset[disabled] .mypager__button.active {
 .mypager__button .badge {
   color: #ffffff;
   background-color: #fff;
+}
+.mypager__load-more.disabled,
+.mypager__button.disabled {
+  background-color: #ebebeb;
 }
 .mypager__button--start::before {
   content: "\f100";
