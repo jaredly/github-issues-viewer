@@ -1,0 +1,181 @@
+
+@import "../web/bootstrap/less/variables";
+@import "../web/bootstrap/less/utilities";
+@import "../web/bootstrap/less/scaffolding";
+@import "../web/bootstrap/less/mixins";
+@import "../web/bootstrap/less/buttons";
+@import "../web/bootstrap/less/labels";
+
+@import "../web/font-awesome/less/font-awesome";
+
+.l-body {
+  width: 700px;
+  margin: 50px auto;
+}
+
+.shadowed {
+  box-shadow: 0 0 5px #777;
+}
+
+.very-round {
+  border-radius: 5px;
+}
+
+.issue-viewer {
+  .shadowed;
+  .very-round;
+  .l-body;
+
+  padding: 20px;
+}
+
+.l-space-below {
+  margin-bottom: 15px;
+}
+
+.l-space-left {
+  margin-left: 15px;
+}
+
+.avatar-image {
+  width: 50px;
+  height: 50px;
+}
+
+/* issue page */
+
+/** top header **/
+.issue-page__back {
+  .btn;
+  .btn-default;
+  .btn-sm;
+}
+
+.issue-header__main {
+  margin-top: 0;
+}
+
+.issue-page__header,
+.issue-header__sub,
+.issue-header__main {
+  .l-space-below;
+}
+
+.issue-page__header__title {
+  .l-space-left;
+}
+
+.issue-page__state {
+  .pull-right;
+  .label;
+
+  margin-top: 5px;
+}
+
+.issue-state--open {
+  .label-success;
+}
+
+.issue-state--closed {
+  .label-warning;
+}
+
+.user__avatar {
+  .avatar-image;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/** sub header **/
+
+.issue-header__sub {
+  color: #999;
+}
+.issue-page__user {
+  color: #555;
+}
+
+.issue__time::before {
+  content: 'opened this issue';
+  margin: 0 5px;
+}
+
+.user__login {
+  margin-left: 5px;
+}
+
+.user__login::before {
+  content: @fa-var-play;
+  position: relative;
+  left: -6px;
+  font-family: FontAwesome;
+  color: #ccc;
+}
+
+.user__avatar {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.labels {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.labels__label {
+  float: left;
+  margin-left: 5px;
+}
+
+.issue-header__labels {
+  float: right;
+  margin-top: 13px;
+}
+
+/** comments **/
+
+.comments {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.border-top {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.comment {
+  .border-top;
+}
+
+.comment__header {
+  color: #777;
+}
+
+.comment__id {
+  color: #ccc;
+  margin: 0 5px;
+}
+
+.comment__id::before {
+  content: @fa-var-comment;
+  font-family: FontAwesome;
+}
+
+.comment__time::before {
+  content: 'commented';
+  margin: 0 5px;
+}
+
+.comment__body {
+  margin-left: 65px;
+  margin-bottom: -10px;
+
+  position: relative;
+  top: -10px;
+}
+
