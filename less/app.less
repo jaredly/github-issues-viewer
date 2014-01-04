@@ -8,112 +8,24 @@
 
 @import "../web/font-awesome/less/font-awesome";
 
-.grey-name {
-  color: #555;
-  font-weight: bold;
-}
-
-.l-body {
-  width: 700px;
-  margin: 50px auto;
-}
-
-.shadowed {
-  box-shadow: 0 0 5px #777;
-}
-
-.very-round {
-  border-radius: 5px;
-}
-
-.issue-viewer {
-  .shadowed;
-  .very-round;
-  .l-body;
-
-  padding: 20px;
-}
-
-.l-space-below {
-  margin-bottom: 15px;
-}
-
-.l-space-left {
-  margin-left: 15px;
-}
-
-.avatar-image {
-  width: 50px;
-  height: 50px;
-}
-
-/* issue page */
-
-/** top header **/
-.issue-page__back {
-  .btn;
-  .btn-default;
-  .btn-sm;
-  
-  margin-bottom: 5px;
-}
-
-.issue-header__main {
-  margin-top: 0;
-}
-
-.issue-page__header,
-.issue-header__sub,
-.issue-header__main {
-  .l-space-below;
-}
-
-.issue-page__header__title {
-  margin-left: 10px;
-  color: #555;
-  font-weight: bold;
-}
-
-.issue-page__state {
-  .pull-right;
-  .label;
-
-  margin-top: 5px;
-  margin-left: 10px;
-}
-
-.issue-state--open {
-  .label-success;
-}
-
-.issue-state--closed {
-  .label-warning;
-}
-
-.issue-page__body {
-  margin-bottom: 15px;
-}
-
-.user__avatar {
-  .avatar-image;
-}
+@import "mixins";
 
 a:hover {
   text-decoration: none;
 }
 
-/** sub header **/
+@import "components/comments";
+@import "components/comment";
+@import "components/labels";
+@import "components/pager";
+@import "components/issue";
+@import "pages/all-issues";
+@import "pages/issue";
 
-.issue-header__sub {
-  color: #999;
-}
-.issue-page__user {
-  .grey-name;
-}
+/* User things */
 
-.issue__time::before {
-  content: 'opened this issue';
-  margin: 0 5px;
+.user__avatar {
+  .avatar-image;
 }
 
 .user__login {
@@ -143,74 +55,6 @@ a:hover {
   border-radius: 4px;
 }
 
-.labels {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.labels__label {
-  float: left;
-  margin-left: 5px;
-}
-
-.labels--vertical .labels__label {
-  float: none;
-  display: block;
-}
-
-.issue-header__labels {
-  float: right;
-  margin-top: 13px;
-}
-
-/** comments **/
-
-.comments {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.border-top {
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-}
-
-.comment {
-  .border-top;
-}
-
-.comment__header {
-  color: #777;
-}
-
-.comment__commenter {
-  .grey-name;
-}
-
-.comment__id {
-  color: #ccc;
-  margin: 0 5px;
-}
-
-.comment__id::before {
-  content: @fa-var-comment;
-  font-family: FontAwesome;
-}
-
-.comment__time::before {
-  content: 'commented';
-  margin: 0 5px;
-}
-
-.comment__body {
-  margin-left: 65px;
-  margin-bottom: -10px;
-
-  position: relative;
-  top: -10px;
-}
 
 /* main app */
 
@@ -254,135 +98,6 @@ a:hover {
   font-size: 18px;
   font-weight: bold;
   vertical-align: middle;
-}
-
-/* all issues page */
-
-/** pager **/
-
-.mypager {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.mypager__load-more,
-.mypager__button {
-  .btn;
-  .btn-default;
-  .btn-sm;
-  font-family: FontAwesome;
-
-  &.disabled {
-    background-color: #ebebeb;
-  }
-}
-.mypager__button--start::before {
-  content: @fa-var-angle-double-left;
-}
-.mypager__button--end::before {
-  content: @fa-var-angle-double-right;
-}
-.mypager__button--prev::before {
-  content: @fa-var-angle-left;
-}
-.mypager__button--next::before {
-  content: @fa-var-angle-right;
-}
-.mypager__button--start {
-  margin-right: 5px;
-}
-.mypager__button--end {
-  margin-left: 5px;
-}
-
-.mypager__load-more {
-  margin-left: 10px;
-}
-
-.mypager__page {
-  padding: 5px 10px;
-  display: inline-block;
-  width: 36px;
-  cursor: pointer;
-  color: #999;
-  vertical-align: middle;
-
-  &:hover {
-    color: black;
-  }
-}
-
-.mypager__page.disabled {
-  color: black;
-  font-weight: bold;
-}
-
-.issue-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/** issue **/
-
-.issue {
-  display: flex;
-  flex-wrap: nowrap;
-  color: #555;
-  cursor: pointer;
-  padding: 5px;
-  margin-bottom: 20px;
-
-  &:hover {
-    background-color: #f7f7f7;
-    border-radius: 5px;
-  }
-}
-
-.issue__left {
-  flex: 1;
-  padding-right: 10px;
-}
-
-.issue__right {
-  text-align: right;
-}
-
-.issue__header {
-  font-size: 18px;
-  font-weight: bold;
-  color: #555;
-}
-
-.issue__id::before {
-  content: '#';
-}
-
-.issue__id {
-  margin-right: 10px;
-}
-
-.issue__body {
-  color: #999;
-}
-
-.issue__labels {
-  text-align: right;
-}
-
-.issue__user .user__login {
-  display: block;
-  color: #777;
-  font-size: 10px;
-  margin-top: 5px;
-
-  &:hover {
-    color: #333;
-  }
-}
-
-.issue__user .user__login::before {
-  content: '@';
 }
 
 

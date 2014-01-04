@@ -1,0 +1,60 @@
+
+/** pager **/
+
+.mypager {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.mypager__load-more,
+.mypager__button {
+  .btn;
+  .btn-default;
+  .btn-sm;
+  font-family: FontAwesome;
+
+  &.disabled {
+    background-color: #ebebeb;
+  }
+}
+.mypager__button--start::before {
+  content: @fa-var-angle-double-left;
+}
+.mypager__button--end::before {
+  content: @fa-var-angle-double-right;
+}
+.mypager__button--prev::before {
+  content: @fa-var-angle-left;
+}
+.mypager__button--next::before {
+  content: @fa-var-angle-right;
+}
+.mypager__button--start {
+  margin-right: 5px;
+}
+.mypager__button--end {
+  margin-left: 5px;
+}
+
+.mypager__load-more {
+  margin-left: 10px;
+}
+
+.mypager__page {
+  padding: 5px 10px;
+  display: inline-block;
+  width: 36px;
+  cursor: pointer;
+  color: #999;
+  vertical-align: middle;
+
+  &:hover {
+    color: black;
+  }
+}
+
+.mypager__page.disabled {
+  color: black;
+  font-weight: bold;
+}
+

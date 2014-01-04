@@ -1,0 +1,38 @@
+
+.comment {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.comment__header {
+  color: #777;
+}
+
+.comment__commenter {
+  .grey-name;
+}
+
+.comment__id {
+  color: #ccc;
+  margin: 0 5px;
+}
+
+.comment__id::before {
+  content: @fa-var-comment;
+  font-family: FontAwesome;
+}
+
+.comment__time::before {
+  content: 'commented';
+  margin: 0 5px;
+}
+
+.comment__body {
+  margin-left: 65px;
+  margin-bottom: -10px;
+
+  position: relative;
+  top: -10px;
+}
+
+
