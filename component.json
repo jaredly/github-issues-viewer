@@ -4,7 +4,9 @@
   "description": "",
   "version": "0.0.1",
   "keywords": [],
-  "dependencies": {},
+  "dependencies": {
+    "components/backbone": "*"
+  },
   "development": {},
   "license": "MIT",
   "main": "index.js",
@@ -13,5 +15,6 @@
   ],
   "styles": [
     "twitter-audition.css"
-  ]
+  ],
+  "remotes": []
 }
