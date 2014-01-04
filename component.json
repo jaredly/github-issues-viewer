@@ -7,7 +7,9 @@
   "dependencies": {
     "components/backbone": "*",
     "component/jquery": "*",
-    "lodash/lodash": "*"
+    "lodash/lodash": "*",
+    "component/moment": "*",
+    "chjj/marked": "*"
   },
   "development": {},
   "license": "MIT",
@@ -16,10 +18,16 @@
     "index.js",
     "lib/app.js",
     "lib/router.js",
+    "lib/utils.js",
     "lib/pages/issue.js",
     "lib/pages/all-issues.js",
     "lib/components/issue.js",
-    "lib/components/pager.js"
+    "lib/components/pager.js",
+    "lib/components/comment.js",
+    "lib/components/comments.js",
+    "lib/components/labels.js",
+    "lib/components/label.js",
+    "lib/components/recent-time.js"
   ],
   "styles": [
     "twitter-audition.css"
