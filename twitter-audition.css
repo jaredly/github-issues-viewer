@@ -1885,6 +1885,10 @@ input[type="button"].btn-block {
 .fa-plus-square-o:before {
   content: "\f196";
 }
+.grey-name {
+  color: #555;
+  font-weight: bold;
+}
 .l-body {
   width: 700px;
   margin: 50px auto;
@@ -1940,6 +1944,7 @@ input[type="button"].btn-block {
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
+  margin-bottom: 5px;
 }
 .issue-page__back:focus {
   outline: thin dotted;
@@ -2057,6 +2062,9 @@ fieldset[disabled] .issue-page__back.active {
 .issue-state--closed[href]:focus {
   background-color: #ec971f;
 }
+.issue-page__body {
+  margin-bottom: 15px;
+}
 .user__avatar {
   width: 50px;
   height: 50px;
@@ -2070,6 +2078,7 @@ a:hover {
 }
 .issue-page__user {
   color: #555;
+  font-weight: bold;
 }
 .issue__time::before {
   content: 'opened this issue';
@@ -2118,6 +2127,10 @@ a:hover {
 }
 .comment__header {
   color: #777;
+}
+.comment__commenter {
+  color: #555;
+  font-weight: bold;
 }
 .comment__id {
   color: #ccc;

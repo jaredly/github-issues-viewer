@@ -8,6 +8,11 @@
 
 @import "../web/font-awesome/less/font-awesome";
 
+.grey-name {
+  color: #555;
+  font-weight: bold;
+}
+
 .l-body {
   width: 700px;
   margin: 50px auto;
@@ -49,6 +54,8 @@
   .btn;
   .btn-default;
   .btn-sm;
+  
+  margin-bottom: 5px;
 }
 
 .issue-header__main {
@@ -80,6 +87,10 @@
   .label-warning;
 }
 
+.issue-page__body {
+  margin-bottom: 15px;
+}
+
 .user__avatar {
   .avatar-image;
 }
@@ -94,7 +105,7 @@ a:hover {
   color: #999;
 }
 .issue-page__user {
-  color: #555;
+  .grey-name;
 }
 
 .issue__time::before {
@@ -154,6 +165,10 @@ a:hover {
 
 .comment__header {
   color: #777;
+}
+
+.comment__commenter {
+  .grey-name;
 }
 
 .comment__id {

@@ -24,4 +24,12 @@ clean:
 view:
 	@xdg-open web/index.html
 
+test: lint test-only
+
+lint:
+	jshint *.js lib test
+
+test-only:
+	mocha -R spec
+
 .PHONY: clean

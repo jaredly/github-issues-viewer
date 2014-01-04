@@ -10,5 +10,9 @@
     "test": "make test"
   },
   "author": "Jared Forsyth",
-  "license": "Apache v2"
+  "license": "Apache v2",
+  "devDependencies": {
+    "expect.js": "~0.2.0",
+    "marked": "~0.3.0"
+  }
 }

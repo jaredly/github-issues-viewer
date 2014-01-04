@@ -2,7 +2,7 @@
 var Comments = require('../components/comments')
   , Labels = require('../components/labels')
   , RecentTime = require('../components/recent-time')
-  , linkProfiles = require('../utils').linkProfiles
+  , utils = require('../utils')
 
 var Issue = module.exports = React.createClass({
   getDefaultProps: function () {
@@ -18,11 +18,11 @@ var Issue = module.exports = React.createClass({
       <div className="page issue-page">
         <header className="issue-page__header">
           <h4 className="issue-header__main">
-            <a className="issue-page__back" href={this.props.backLink}>Back</a>
-            <span className="issue-page__header__title">{'#' + issue.number + ' ' + issue.title}</span>
             <span className={"issue-page__state issue-state issue-state--" + issue.state}>
               {issue.state/* TODO capitalize? */}
             </span>
+            <a className="issue-page__back" href={this.props.backLink}>Back</a>
+            <a href={issue.html_url} className="issue-page__header__title">{'#' + issue.number + ' ' + issue.title}</a>
           </h4>
           <div className="issue-header__sub">
             <Labels className="issue-header__labels" labels={issue.labels}/>
@@ -35,7 +35,7 @@ var Issue = module.exports = React.createClass({
           </div>
         </header>
         <section className="issue-page__body">
-          {linkProfiles(issue.body)}
+          {utils.processBody(issue.body)}
         </section>
         <Comments url={issue.comments_url} count={issue.comments}/>
       </div>

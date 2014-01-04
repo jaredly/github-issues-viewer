@@ -1,3 +1,4 @@
 components
 build
 *.swp
+node_modules
