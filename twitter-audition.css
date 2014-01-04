@@ -2018,7 +2018,9 @@ fieldset[disabled] .issue-page__back.active {
   margin-bottom: 15px;
 }
 .issue-page__header__title {
-  margin-left: 15px;
+  margin-left: 10px;
+  color: #555;
+  font-weight: bold;
 }
 .issue-page__state {
   float: right !important;
@@ -2034,6 +2036,7 @@ fieldset[disabled] .issue-page__back.active {
   vertical-align: baseline;
   border-radius: .25em;
   margin-top: 5px;
+  margin-left: 10px;
 }
 .issue-page__state[href]:hover,
 .issue-page__state[href]:focus {
@@ -2087,7 +2090,16 @@ a:hover {
 .user__login {
   margin-left: 5px;
 }
-.user__login::before {
+/*
+.user__login--avatar-right::after {
+  content: @fa-var-play;
+  position: relative;
+  left: -6px;
+  font-family: FontAwesome;
+  color: #ccc;
+}
+*/
+.user__login--avatar-left::before {
   content: "\f04b";
   position: relative;
   left: -6px;
@@ -2106,6 +2118,10 @@ a:hover {
 .labels__label {
   float: left;
   margin-left: 5px;
+}
+.labels--vertical .labels__label {
+  float: none;
+  display: block;
 }
 .issue-header__labels {
   float: right;
@@ -2151,6 +2167,9 @@ a:hover {
   top: -10px;
 }
 /* main app */
+.main-view {
+  margin-top: 20px;
+}
 .repo-input input {
   border: 1px solid white;
   border-radius: 3px;
@@ -2371,4 +2390,57 @@ fieldset[disabled] .pager__button.active {
   color: black;
   font-weight: bold;
 }
+.issue-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 /** issue **/
+.issue {
+  display: flex;
+  flex-wrap: nowrap;
+  color: #555;
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+.issue:hover {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+}
+.issue__left {
+  flex: 1;
+  padding-right: 10px;
+}
+.issue__right {
+  text-align: right;
+}
+.issue__header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+}
+.issue__id::before {
+  content: '#';
+}
+.issue__id {
+  margin-right: 10px;
+}
+.issue__body {
+  color: #999;
+}
+.issue__labels {
+  text-align: right;
+}
+.issue__user .user__login {
+  display: block;
+  color: #777;
+  font-size: 10px;
+  margin-top: 5px;
+}
+.issue__user .user__login:hover {
+  color: #333;
+}
+.issue__user .user__login::before {
+  content: '@';
+}

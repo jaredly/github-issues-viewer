@@ -29,7 +29,7 @@ var Issue = module.exports = React.createClass({
             <a className="issue-page__user" href={user.html_url}>
               <img className="user__avatar"
                   src={user.avatar_url}/>
-              <span className="user__login">{user.login}</span>
+              <span className="user__login user__login--avatar-left">{user.login}</span>
             </a>
             <RecentTime className="issue__time" time={issue.created_at}/>
           </div>
