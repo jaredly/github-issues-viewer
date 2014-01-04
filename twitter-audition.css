@@ -2280,7 +2280,12 @@ fieldset[disabled] .repo-input button.active {
 }
 /* all issues page */
 /** pager **/
-.pager__button {
+.mypager {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.mypager__load-more,
+.mypager__button {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -2308,26 +2313,34 @@ fieldset[disabled] .repo-input button.active {
   border-radius: 3px;
   font-family: FontAwesome;
 }
-.pager__button:focus {
+.mypager__load-more:focus,
+.mypager__button:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.pager__button:hover,
-.pager__button:focus {
+.mypager__load-more:hover,
+.mypager__button:hover,
+.mypager__load-more:focus,
+.mypager__button:focus {
   color: #333333;
   text-decoration: none;
 }
-.pager__button:active,
-.pager__button.active {
+.mypager__load-more:active,
+.mypager__button:active,
+.mypager__load-more.active,
+.mypager__button.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.pager__button.disabled,
-.pager__button[disabled],
-fieldset[disabled] .pager__button {
+.mypager__load-more.disabled,
+.mypager__button.disabled,
+.mypager__load-more[disabled],
+.mypager__button[disabled],
+fieldset[disabled] .mypager__load-more,
+fieldset[disabled] .mypager__button {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -2335,58 +2348,99 @@ fieldset[disabled] .pager__button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.pager__button:hover,
-.pager__button:focus,
-.pager__button:active,
-.pager__button.active,
-.open .dropdown-toggle.pager__button {
+.mypager__load-more:hover,
+.mypager__button:hover,
+.mypager__load-more:focus,
+.mypager__button:focus,
+.mypager__load-more:active,
+.mypager__button:active,
+.mypager__load-more.active,
+.mypager__button.active,
+.open .dropdown-toggle.mypager__load-more,
+.open .dropdown-toggle.mypager__button {
   color: #333333;
   background-color: #ebebeb;
   border-color: #adadad;
 }
-.pager__button:active,
-.pager__button.active,
-.open .dropdown-toggle.pager__button {
+.mypager__load-more:active,
+.mypager__button:active,
+.mypager__load-more.active,
+.mypager__button.active,
+.open .dropdown-toggle.mypager__load-more,
+.open .dropdown-toggle.mypager__button {
   background-image: none;
 }
-.pager__button.disabled,
-.pager__button[disabled],
-fieldset[disabled] .pager__button,
-.pager__button.disabled:hover,
-.pager__button[disabled]:hover,
-fieldset[disabled] .pager__button:hover,
-.pager__button.disabled:focus,
-.pager__button[disabled]:focus,
-fieldset[disabled] .pager__button:focus,
-.pager__button.disabled:active,
-.pager__button[disabled]:active,
-fieldset[disabled] .pager__button:active,
-.pager__button.disabled.active,
-.pager__button[disabled].active,
-fieldset[disabled] .pager__button.active {
+.mypager__load-more.disabled,
+.mypager__button.disabled,
+.mypager__load-more[disabled],
+.mypager__button[disabled],
+fieldset[disabled] .mypager__load-more,
+fieldset[disabled] .mypager__button,
+.mypager__load-more.disabled:hover,
+.mypager__button.disabled:hover,
+.mypager__load-more[disabled]:hover,
+.mypager__button[disabled]:hover,
+fieldset[disabled] .mypager__load-more:hover,
+fieldset[disabled] .mypager__button:hover,
+.mypager__load-more.disabled:focus,
+.mypager__button.disabled:focus,
+.mypager__load-more[disabled]:focus,
+.mypager__button[disabled]:focus,
+fieldset[disabled] .mypager__load-more:focus,
+fieldset[disabled] .mypager__button:focus,
+.mypager__load-more.disabled:active,
+.mypager__button.disabled:active,
+.mypager__load-more[disabled]:active,
+.mypager__button[disabled]:active,
+fieldset[disabled] .mypager__load-more:active,
+fieldset[disabled] .mypager__button:active,
+.mypager__load-more.disabled.active,
+.mypager__button.disabled.active,
+.mypager__load-more[disabled].active,
+.mypager__button[disabled].active,
+fieldset[disabled] .mypager__load-more.active,
+fieldset[disabled] .mypager__button.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.pager__button .badge {
+.mypager__load-more .badge,
+.mypager__button .badge {
   color: #ffffff;
   background-color: #fff;
 }
-.pager__button--prev::before {
+.mypager__button--start::before {
+  content: "\f100";
+}
+.mypager__button--end::before {
+  content: "\f101";
+}
+.mypager__button--prev::before {
   content: "\f104";
 }
-.pager__button--next::before {
+.mypager__button--next::before {
   content: "\f105";
 }
-.pager__page {
+.mypager__button--start {
+  margin-right: 5px;
+}
+.mypager__button--end {
+  margin-left: 5px;
+}
+.mypager__load-more {
+  margin-left: 10px;
+}
+.mypager__page {
   padding: 5px 10px;
+  display: inline-block;
+  width: 36px;
   cursor: pointer;
   color: #999;
   vertical-align: middle;
 }
-.pager__page:hover {
+.mypager__page:hover {
   color: black;
 }
-.pager__page.disabled {
+.mypager__page.disabled {
   color: black;
   font-weight: bold;
 }

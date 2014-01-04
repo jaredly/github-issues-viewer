@@ -11,6 +11,14 @@ var Issue = module.exports = React.createClass({
     }
   },
   render: function () {
+    if (!this.props.issue) {
+      return (
+        <div className="page issue-page">
+          <h1>Issue not found, or not loaded</h1>
+          <a className="issue-page__back" href={this.props.backLink}>Back</a>
+        </div>
+      )
+    }
     var issue = this.props.issue
       , user = issue.user
 
