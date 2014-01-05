@@ -12,6 +12,21 @@ requests/hour.
 
 [![Screenshot](docs/screenshot.png)](http://jaredly.github.io/github-issues-viewer)
 
+# Components
+
+- App *fetches models*
+  - RepoInput
+  - View *manages routing*
+    - AllIssuesPage
+      - Pager
+      - Issue
+    - IssuePage
+      - RecentTime
+      - Comments
+        - Comment
+          - RecentTime
+
+
 Technologies used:
 
 - [React](http://facebook.github.io/react) for the views
