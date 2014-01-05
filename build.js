@@ -31876,7 +31876,12 @@ var View = module.exports = React.createClass({\n\
   },\n\
 \n\
   getMessage: function () {\n\
-    if (this.state.error) return 'Failed to fetch issues!'\n\
+    if (this.state.error) {\n\
+      if (this.state.error === 'Forbidden') {\n\
+        return \"Github API imposes a 60 req/hour limit, and it looks like you've gone over.\"\n\
+      }\n\
+      return 'Failed to fetch issues! Does the repo exist?'\n\
+    }\n\
     if (this.state.loading) return 'loading...'\n\
   },\n\
 \n\
@@ -31904,6 +31909,7 @@ var View = module.exports = React.createClass({\n\
       page = IssuePage({\n\
         repo: this.props.repo,\n\
         backLink: '#' + this.props.repo + '/' + this.state.start,\n\
+        loading: this.props.loading,\n\
         issue: this.getIssue()\n\
       })\n\
     } else {\n\
@@ -32041,7 +32047,7 @@ var Issue = module.exports = React.createClass({\n\
     if (!this.props.issue) {\n\
       return (\n\
         React.DOM.div( {className:\"page issue-page\"}, \n\
-          React.DOM.h1(null, \"Issue not found, or not loaded\"),\n\
+          React.DOM.h1(null, this.props.loading ? 'Loading...' : 'Issue not found'),\n\
           React.DOM.a( {className:\"issue-page__back\", href:this.props.backLink}, \"Back\")\n\
         )\n\
       )\n\
