@@ -31708,7 +31708,8 @@ module.exports = React.createClass({\n\
       error: false,\n\
       issues: [],\n\
       canLoadMore: true,\n\
-      lastLoadedPage: 0\n\
+      lastLoadedPage: 0,\n\
+      xhr: null\n\
     }\n\
   },\n\
   componentWillMount: function () {\n\
@@ -31731,12 +31732,15 @@ module.exports = React.createClass({\n\
 \n\
   // data loading\n\
   load: function () {\n\
+    if (this.state.xhr) {\n\
+      this.state.xhr.abort()\n\
+    }\n\
     if (!this.state.canLoadMore) {\n\
       return console.error('Got a request to load more, but there was no more')\n\
     }\n\
-    this.setState({error:false, loading: true})\n\
     var url = 'https://api.github.com/repos/' + this.state.repo + '/issues?page=' + (this.state.lastLoadedPage + 1)\n\
-    $.get(url, this.gotData, 'json').fail(this.failed)\n\
+    var xhr = $.get(url, this.gotData, 'json').fail(this.failed)\n\
+    this.setState({error:false, loading: true, xhr: xhr})\n\
   },\n\
   gotData: function (data) {\n\
     var canLoadMore = data.length === 30\n\
@@ -31746,14 +31750,15 @@ module.exports = React.createClass({\n\
       // XXX: this is brittle...what if they change how many they send?\n\
       canLoadMore: canLoadMore,\n\
       issues: this.state.issues.concat(data),\n\
-      error: false\n\
+      error: false,\n\
+      xhr: null\n\
     })\n\
 \n\
     if (canLoadMore) {\n\
       this.load()\n\
     }\n\
   },\n\
-  failed: function (reason) {\n\
+  failed: function (xhr, status, reason) {\n\
     this.setState({error: reason || true})\n\
   },\n\
 \n\
@@ -31765,9 +31770,12 @@ module.exports = React.createClass({\n\
         initialValue: this.state.repo,\n\
         onChange: this.setRepo\n\
       }),\n\
+      this.state.error ? d.h3({}, 'Error loading repo: ' + this.state.error) : false,\n\
       View({\n\
         repo: this.state.repo,\n\
         issues: this.state.issues,\n\
+        loading: this.state.loading,\n\
+        setRepo: this.setRepo\n\
       })\n\
     )\n\
   },\n\
@@ -31800,20 +31808,41 @@ var View = module.exports = React.createClass({\n\
     }\n\
   },\n\
   componentWillMount: function () {\n\
+    var that = this\n\
     this.router = new AppRouter();\n\
     this.router.on('route:allIssues', this.allIssues)\n\
     this.router.on('route:issue', this.navIssue)\n\
+    this.router.on('default', function () {\n\
+      that.goHome()\n\
+    })\n\
 \n\
+  },\n\
+  componentDidMount: function () {\n\
     Backbone.history.start();\n\
   },\n\
+  /*\n\
   componentWillReceiveProps: function (props) {\n\
     if (props.repo !== this.props.repo) {\n\
+      this.goHome(props.repo)\n\
+    }\n\
+  },\n\
+  */\n\
+  componentDidUpdate: function (props, state) {\n\
+    if (props.repo !== this.props.repo) {\n\
+      if (Backbone.history.fragment.indexOf(this.props.repo) === 0) return\n\
       this.goHome()\n\
     }\n\
   },\n\
 \n\
   // routing\n\
-  allIssues: function (start) {\n\
+  checkRepoChange: function (owner, repo) {\n\
+    var name = owner + '/' + repo\n\
+    if (name === this.props.repo) return\n\
+    this.props.setRepo(name)\n\
+    return true\n\
+  },\n\
+  allIssues: function (owner, repo, start) {\n\
+    this.checkRepoChange(owner, repo)\n\
     var num = start ? parseInt(start) : 0\n\
     if (isNaN(num)) {\n\
       return this.goHome()\n\
@@ -31823,7 +31852,8 @@ var View = module.exports = React.createClass({\n\
       start: num\n\
     })\n\
   },\n\
-  navIssue: function (issue) {\n\
+  navIssue: function (owner, repo, issue) {\n\
+    this.checkRepoChange(owner, repo)\n\
     issue = parseInt(issue)\n\
     if (isNaN(issue)) {\n\
       return this.goHome()\n\
@@ -31833,16 +31863,16 @@ var View = module.exports = React.createClass({\n\
       issue: issue\n\
     })\n\
   },\n\
-  goHome: function () {\n\
-    this.router.navigate(\"\", {trigger: true})\n\
+  goHome: function (repo) {\n\
+    this.router.navigate(repo || this.props.repo, {trigger: true})\n\
   },\n\
 \n\
   // child callbacks\n\
   onPage: function (start) {\n\
-    this.router.navigate('' + start, {trigger: true})\n\
+    this.router.navigate(this.props.repo + '/' + start, {trigger: true})\n\
   },\n\
   issueHref: function (issue) {\n\
-    return '#issue/' + issue\n\
+    return '#' + this.props.repo + '/issue/' + issue\n\
   },\n\
 \n\
   getMessage: function () {\n\
@@ -31873,7 +31903,7 @@ var View = module.exports = React.createClass({\n\
     if (this.state.page === 'issue') {\n\
       page = IssuePage({\n\
         repo: this.props.repo,\n\
-        backLink: '#' + this.state.start,\n\
+        backLink: '#' + this.props.repo + '/' + this.state.start,\n\
         issue: this.getIssue()\n\
       })\n\
     } else {\n\
@@ -31882,6 +31912,7 @@ var View = module.exports = React.createClass({\n\
         start: this.state.start,\n\
         issues: this.props.issues,\n\
         onLoadMore: this.props.onLoadMore,\n\
+        loading: this.props.loading,\n\
 \n\
         issueHref: this.issueHref,\n\
         onPage: this.onPage,\n\
@@ -31898,9 +31929,10 @@ require.register("twitter-audition/lib/router.js", Function("exports, require, m
 \n\
 module.exports = Backbone.Router.extend({\n\
   routes: {\n\
-    \"\": \"allIssues\",\n\
-    \":start\": \"allIssues\",\n\
-    \"issue/:number\": \"issue\"\n\
+    \":owner/:repo\": \"allIssues\",\n\
+    \":owner/:repo/:start\": \"allIssues\",\n\
+    \":owner/:repo/issue/:number\": \"issue\",\n\
+    \"*splat\": \"default\"\n\
   }\n\
 });\n\
 \n\
@@ -32072,6 +32104,10 @@ module.exports = React.createClass({\n\
     }\n\
     */\n\
     var issues = this.props.issues.slice(this.props.start, this.props.start + 25)\n\
+      , message = false\n\
+    if (!issues.length) {\n\
+      message = d.h4({className:'no-issues'}, this.props.loading ? 'Loading...' : 'No Issues')\n\
+    }\n\
     return d.div(\n\
       props,\n\
       Pager({\n\
@@ -32080,6 +32116,7 @@ module.exports = React.createClass({\n\
         max: this.props.issues.length,\n\
         onPage: this.props.onPage\n\
       }),\n\
+      message,\n\
       d.ul(\n\
         {\n\
           className: 'issue-list'\n\
@@ -32121,7 +32158,7 @@ module.exports = React.createClass({\n\
       React.DOM.div( {className:\"issue\", onClick:this.onClick}, \n\
         React.DOM.div( {className:\"issue__left\"}, \n\
           React.DOM.a( {className:\"issue__header\", href:this.props.href}, \n\
-            React.DOM.span( {className:\"issue__id\"}, issue.id),\n\
+            React.DOM.span( {className:\"issue__id\"}, issue.number),\n\
             React.DOM.span( {className:\"issue__title\"}, issue.title)\n\
           ),\n\
           React.DOM.div( {className:\"issue__body\"}, \n\
@@ -32130,8 +32167,7 @@ module.exports = React.createClass({\n\
         ),\n\
         React.DOM.div( {className:\"issue__right\"}, \n\
           React.DOM.a( {className:\"issue__user\", href:issue.user.html_url}, \n\
-            React.DOM.img( {className:\"user__avatar\",\n\
-                src:issue.user.avatar_url}),\n\
+            React.DOM.img( {className:\"user__avatar\", src:issue.user.avatar_url}),\n\
             React.DOM.span( {className:\"user__login user__login--avatar-right\"}, issue.user.login)\n\
           ),\n\
           Labels( {className:\"issue__labels labels--vertical\", labels:issue.labels})\n\
@@ -32211,20 +32247,24 @@ module.exports = React.createClass({\n\
       { className: 'mypager' },\n\
       d.button({\n\
         className: 'mypager__button mypager__button--start' + (canPrev ? '' : ' disabled'),\n\
-        onClick: canPrev ? this.props.onPage.bind(null, 0) : null\n\
+        onClick: canPrev ? this.props.onPage.bind(null, 0) : null,\n\
+        disabled: !canPrev\n\
       }),\n\
       d.button({\n\
         className: 'mypager__button mypager__button--prev' + (canPrev ? '' : ' disabled'),\n\
-        onClick: canPrev ? this.props.onPage.bind(null, prev) : null\n\
+        onClick: canPrev ? this.props.onPage.bind(null, prev) : null,\n\
+        disabled: !canPrev\n\
       }),\n\
       this.pages(),\n\
       d.button({\n\
         className: 'mypager__button mypager__button--next' + (canNext ? '' : ' disabled'),\n\
-        onClick: canNext ? this.props.onPage.bind(null, next) : null\n\
+        onClick: canNext ? this.props.onPage.bind(null, next) : null,\n\
+        disabled: !canNext\n\
       }),\n\
       d.button({\n\
         className: 'mypager__button mypager__button--end' + (canNext ? '' : ' disabled'),\n\
-        onClick: canNext ? this.props.onPage.bind(null, lastPage) : null\n\
+        onClick: canNext ? this.props.onPage.bind(null, lastPage) : null,\n\
+        disabled: !canNext\n\
       }),\n\
       this.props.onLoadMore ? d.button({\n\
         className: 'mypager__load-more',\n\
@@ -32270,7 +32310,8 @@ var Comment = module.exports = React.createClass({\n\
 //@ sourceURL=twitter-audition/lib/components/comment.js"
 ));
 require.register("twitter-audition/lib/components/comments.js", Function("exports, require, module",
-"var Comment = require('./comment')\n\
+"\n\
+var Comment = require('./comment')\n\
   , d = React.DOM\n\
 \n\
 var Comments = module.exports = React.createClass({\n\
@@ -32335,7 +32376,6 @@ var Comments = module.exports = React.createClass({\n\
     )\n\
   }\n\
 })\n\
-\n\
 //@ sourceURL=twitter-audition/lib/components/comments.js"
 ));
 require.register("twitter-audition/lib/components/labels.js", Function("exports, require, module",
@@ -32385,11 +32425,13 @@ module.exports = React.createClass({\n\
   },\n\
   getInitialState: function () {\n\
     return {\n\
-      value: this.props.initialValue\n\
+      value: ''\n\
     }\n\
   },\n\
   onChange: function (e) {\n\
-    this.setState({value: e.target.value})\n\
+    var value = e.target.value\n\
+    if (value === this.props.initialValue) value = ''\n\
+    this.setState({value: value})\n\
   },\n\
   onKeyDown: function (e) {\n\
     // on return\n\
@@ -32397,9 +32439,13 @@ module.exports = React.createClass({\n\
       if (this.canSubmit()) {\n\
         e.preventDefault()\n\
         e.stopPropagation()\n\
-        this.props.onChange(this.state.value)\n\
+        this.submit()\n\
       }\n\
     }\n\
+  },\n\
+  submit: function () {\n\
+    this.props.onChange(this.state.value)\n\
+    this.setState({value: ''})\n\
   },\n\
   canSubmit: function () {\n\
     if (this.state.value.trim() === this.props.initialValue.trim()) {\n\
@@ -32420,12 +32466,12 @@ module.exports = React.createClass({\n\
       d.input({\n\
         placeholder: 'owner/repo',\n\
         onKeyDown: this.onKeyDown,\n\
-        value: this.state.value,\n\
+        value: this.state.value || this.props.initialValue,\n\
         onChange: this.onChange\n\
       }),\n\
       d.button({\n\
         disabled: disabled,\n\
-        onClick: disabled ? null : this.props.onChange.bind(null, this.state.value)\n\
+        onClick: disabled ? null : this.submit\n\
       }, 'load')\n\
     )\n\
   }\n\
