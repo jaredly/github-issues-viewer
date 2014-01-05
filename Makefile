@@ -32,4 +32,11 @@ lint:
 test-only:
 	mocha -R spec
 
-.PHONY: clean
+gh-pages: build
+	cp -r web w
+	git co gh-pages
+	rm -rf bootstrap font-awesome
+	mv w/* ./
+	rmdir w
+
+.PHONY: clean test test-only lint gh-pages
