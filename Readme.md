@@ -1,13 +1,25 @@
 
 # Github issues viewer
 
+This is a viewer of github issues that is entirely client-side. It
+demonstrates one way of building a slightly-more-than-trivial app with
+facebook's React framework.
+
+All requests to the github api are anonymous, so they cap it at 60
+requests/hour.
+
+[View the live example.](http://jaredly.github.io/github-issues-viewer)
+
+[![Screenshot](docs/screenshot.png)](http://jaredly.github.io/github-issues-viewer)
+
 Technologies used:
 
-- React
-- Backbone (mostly for routing... not mutable models here)
-- Bootstrap for some styling
-- LessCSS
-- FontAwesome
+- [React](http://facebook.github.io/react) for the views
+- [Backbone](http://backbonejs.org) (mostly for routing... no mutable models here)
+- [Bootstrap](http://twbs.github.io/bootstrap) for some styling
+- [Component(1)](http://github.com/component/component) for packaging
+- [LessCSS](http://lesscss.org) for css processing
+- [FontAwesome](http://fontawesome.io) for icons
 
 ## Known Issues
 
@@ -23,8 +35,28 @@ the raw text into a markdown syntax tree, and then grab the first x chunks
 from there. A project for another time. I couldn't find a lib on npm to do it,
 but if you know of one, please open an issue or pr.
 
-### Issue list loading
+### Anonymous API usage cap
 
-I don't load the number of issues directly, so there's some brittleness there.
-Future work would get the number of issues, and show a full pager.
+It might be interesting to look into auth w/ github...not sure if that's
+possible in a backend-less app.
 
+## Building
+
+```
+npm install -g react-tools component less
+make
+google-chrome web/index.html
+```
+
+## Hacking
+
+```
+npm install -g jshint mocha
+make test
+```
+
+## License
+
+Apache v2
+
+Contribution and Comments are welcome.
