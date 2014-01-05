@@ -4,6 +4,13 @@ var Comments = require('../components/comments')
   , RecentTime = require('../components/recent-time')
   , utils = require('../utils')
 
+/**
+ * Display a single issue
+ *
+ * Child components:
+ * - RecentTime (display time in a "2 hours ago" fashion)
+ * - Comments (load & display the comments)
+ */
 var Issue = module.exports = React.createClass({
   getDefaultProps: function () {
     return {

@@ -3,6 +3,12 @@
 var Labels = require('./labels')
   , utils = require('../utils')
 
+/**
+ * An Issue in the list of Issues
+ *
+ * Child components:
+ * - Labels
+ */
 module.exports = React.createClass({
   displayName: 'Issue',
   onClick: function () {
