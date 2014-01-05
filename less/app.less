@@ -10,10 +10,7 @@
 
 @import "mixins";
 
-a:hover {
-  text-decoration: none;
-}
-
+@import "components/repo-input";
 @import "components/comments";
 @import "components/comment";
 @import "components/labels";
@@ -21,6 +18,10 @@ a:hover {
 @import "components/issue";
 @import "pages/all-issues";
 @import "pages/issue";
+
+a:hover {
+  text-decoration: none;
+}
 
 /* User things */
 
@@ -60,44 +61,6 @@ a:hover {
 
 .main-view {
   margin-top: 20px;
-}
-
-.repo-input {
-  input {
-    border: 1px solid white;
-    border-radius: 3px;
-    vertical-align: middle;
-    font-size: 18px;
-    padding: 2px 5px;
-    font-weight: bold;
-    margin-right: 10px;
-    margin-left: 10px;
-    cursor: pointer;
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 3px #777;
-      cursor: text;
-    }
-
-  }
-
-  button {
-    .btn;
-    .btn-default;
-
-    &[disabled],
-    &.disabled {
-      background-color: #ebebeb;
-    }
-  }
-}
-
-.repo-input__title {
-  color: #777;
-  font-size: 18px;
-  font-weight: bold;
-  vertical-align: middle;
 }
 
 
