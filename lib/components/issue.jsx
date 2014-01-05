@@ -14,7 +14,7 @@ module.exports = React.createClass({
       <div className="issue" onClick={this.onClick}>
         <div className="issue__left">
           <a className="issue__header" href={this.props.href}>
-            <span className="issue__id">{issue.id}</span>
+            <span className="issue__id">{issue.number}</span>
             <span className="issue__title">{issue.title}</span>
           </a>
           <div className="issue__body">
