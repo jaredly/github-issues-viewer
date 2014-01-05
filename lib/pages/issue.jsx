@@ -14,7 +14,7 @@ var Issue = module.exports = React.createClass({
     if (!this.props.issue) {
       return (
         <div className="page issue-page">
-          <h1>Issue not found, or not loaded</h1>
+          <h1>{this.props.loading ? 'Loading...' : 'Issue not found'}</h1>
           <a className="issue-page__back" href={this.props.backLink}>Back</a>
         </div>
       )
